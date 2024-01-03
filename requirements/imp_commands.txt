@@ -1,0 +1,29 @@
+## starting Redis Server
+redis-server
+(default port is 6379)
+
+# ## stopping redis -server
+# sudo service redis-server stop
+
+# ## check if redis-server active
+# redis-cli ping 
+# (respone should be PONG)
+
+
+## start celery worker
+celery -A main.celery_app worker --loglevel INFO
+
+## start celery beat
+celery -A main.celery_app beat --loglevel INFO
+
+##installing mailhog
+sudo apt-get -y install golang-go
+go install github.com/mailhog/MailHog@latest
+
+##activating mailhog
+~/go/bin/MailHog
+(visit localhost:8025 on browser)
+
+##for caching
+#download redisinsight app, and in redis insight app--> create redis database with default port, click 'select logical database' and give database index = 3
+#caching endpoint in views.py is commented out for now.
